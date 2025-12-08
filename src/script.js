@@ -15,6 +15,25 @@ const inputGeneratorForm = document.querySelector('.input-generator__form');
 
 ///////////////////////////////////////////////////
 
+const inputGenereteUI = async function () {
+  const topic = inputGeneratorField.value;
+  inputGeneratorField.value = '';
+  const quote = await fetchAIQuote(topic);
+  quoteText.textContent = quote.text;
+  quoteAuthor.textContent = quote.author;
+};
+
+const randomTopicGenerator = async function () {
+  const randomTopic =
+    defaultTopics[Math.floor(Math.random() * defaultTopics.length)];
+
+  const topic = randomTopic;
+
+  const quote = await fetchAIQuote(topic);
+  quoteText.textContent = quote.text;
+  quoteAuthor.textContent = quote.author;
+};
+
 const defaultTopics = [
   'Success',
   'Life',
@@ -42,33 +61,13 @@ inputGeneratorForm.addEventListener('submit', async function (e) {
   e.preventDefault();
   if (inputGeneratorField.value.trim() === '')
     return console.log('Input field is empty');
-
-  // REFACTOR LATER
-  const topic = inputGeneratorField.value;
-  inputGeneratorField.value = '';
-
-  const quote = await fetchAIQuote(topic);
-  quoteText.textContent = quote.text;
-  quoteAuthor.textContent = quote.author;
+  inputGenereteUI();
 });
 
 newQuoteBtn.addEventListener('click', async function (e) {
-  const randomTopic =
-    defaultTopics[Math.floor(Math.random() * defaultTopics.length)];
-
-  // REFACTOR LATER
   if (inputGeneratorField.value) {
-    const topic = inputGeneratorField.value;
-    inputGeneratorField.value = '';
-
-    const quote = await fetchAIQuote(topic);
-    quoteText.textContent = quote.text;
-    quoteAuthor.textContent = quote.author;
+    inputGenereteUI();
   } else if (inputGeneratorField.value.trim() === '') {
-    const topic = randomTopic;
-
-    const quote = await fetchAIQuote(topic);
-    quoteText.textContent = quote.text;
-    quoteAuthor.textContent = quote.author;
+    randomTopicGenerator();
   }
 });
