@@ -150,6 +150,10 @@ body {
   transform: translateY(-1px);
 }
 
+.btn:active {
+  transform: translateY(3px);
+}
+
 .helper-btn {
   width: 3.5rem;
   height: 3.5rem;
@@ -177,4 +181,8 @@ body {
   box-shadow: var(--box-shadow);
   cursor: pointer;
   transform: translateY(-1px);
+}
+
+.helper-btn:active {
+  transform: translateY(2px);
 }

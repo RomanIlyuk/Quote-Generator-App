@@ -3,7 +3,8 @@ import { GoogleGenerativeAI } from 'https://esm.run/@google/generative-ai';
 
 const ai = new GoogleGenerativeAI(GEMINI_API_KEY);
 // fetch request
-const model = ai.getGenerativeModel({ model: 'gemini-2.5-flash-lite' });
+const model = ai.getGenerativeModel({ model: 'gemini-2.5-flash' });
+
 
 export async function fetchAIQuote(topic) {
   console.log(`Asking Gemini about ${topic}`);
